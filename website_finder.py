@@ -179,7 +179,7 @@ def main():
             # be kind to public services
             time.sleep(3)
     send_csv_to_discord(
-        webhook_url=f"https://discord.com/api/webhooks/{os.getenv("DISCORD_WEBHOOK_ID")}",
+        webhook_url=f"https://discord.com/api/webhooks/{os.getenv('DISCORD_WEBHOOK_ID')}",
         file_path=output_file
     )
 
