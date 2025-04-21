@@ -122,7 +122,7 @@ def _looks_official(url: str, brand: str) -> bool:
     # must contain brand slug
     return brand_slug[:6] in domain_nw  
 
-def fetch_duckduckgo_site(name: str) -> str | None:
+def fetch_duckduckgo_site(name: str) -> str :
     query = f"{name} official US website"
     with DDGS() as ddgs:
         for r in ddgs.text(query, max_results=10, region="wt-wt", safesearch="Off"):
