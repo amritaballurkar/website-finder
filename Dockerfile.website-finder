@@ -6,8 +6,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy script
+# Copy script and brands.txt
 COPY website_finder.py .
+COPY brands.txt .
 
 # Create data directory for input/output
 RUN mkdir -p /app/data
