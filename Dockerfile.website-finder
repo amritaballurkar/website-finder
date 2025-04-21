@@ -16,4 +16,4 @@ RUN mkdir -p /app/data
 ENV PYTHONUNBUFFERED=1
 
 # Run the script with default paths that match the volume mapping
-CMD ["python", "website_finder.py", "/app/data/brands.txt", "/app/data/output.csv"]
+CMD ["python", "website_finder.py", "brands.txt", "/app/data/output.csv"]
