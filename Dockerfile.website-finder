@@ -1,0 +1,19 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy script
+COPY website_finder.py .
+
+# Create data directory for input/output
+RUN mkdir -p /app/data
+
+# Set Python to run unbuffered to ensure logs are output immediately
+ENV PYTHONUNBUFFERED=1
+
+# Run the script with default paths that match the volume mapping
+CMD ["python", "website_finder.py", "/app/data/brands.txt", "/app/data/output.csv"]

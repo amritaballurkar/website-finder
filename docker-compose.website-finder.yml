@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  website-finder:
+    build:
+      context: .
+      dockerfile: Dockerfile.website-finder
+    container_name: website-finder
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
