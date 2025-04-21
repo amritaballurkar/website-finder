@@ -1,4 +1,5 @@
 import csv
+import os
 import sys
 import time
 import re
@@ -144,6 +145,21 @@ def get_website(brand: str) -> Tuple[Optional[str], str]:
         return site, "duckduckgo"
     return None, "not_found"
 
+def send_csv_to_discord(webhook_url, file_path, message="CSV done processing: "):
+    with open(file_path, 'rb') as f:
+        files = {
+            'file': (file_path, f),
+        }
+        data = {
+            'content': message,
+        }
+        response = requests.post(webhook_url, data=data, files=files)
+
+    if response.status_code == 204:
+        print("CSV sent to Discord successfully.")
+    else:
+        print(f"Failed to send CSV: {response.status_code} - {response.text}")
+
 def main():
     if len(sys.argv) != 3:
         print("Usage: python website_finder.py <brands.txt> <output.csv>")
@@ -162,6 +178,10 @@ def main():
             print(f"[{idx}/{len(brands)}] {brand}: {website or 'N/A'} ({source})")
             # be kind to public services
             time.sleep(3)
+    send_csv_to_discord(
+        webhook_url=f"https://discord.com/api/webhooks/{os.getenv("DISCORD_WEBHOOK_ID")}/{os.getenv("DISCORD_WEBHOOK_TOKEN")}",
+        file_path=output_file
+    )
 
 if __name__ == "__main__":
     main()
