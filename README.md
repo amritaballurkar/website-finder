@@ -12,3 +12,5 @@ Use it responsibly: both Wikidata and DuckDuckGo rate‑limit automated traffic.
 
 Usage:
     python brand_official_website_finder.py brands.txt output.csv
+
+Make sure you set your DISCORD_WEBHOOK_ID environment variable if you want to be messaged when the script finishes :)
