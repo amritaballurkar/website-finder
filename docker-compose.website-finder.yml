@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile.website-finder
     container_name: website-finder
     volumes:
-      - ./data:/app/data
+      - /mypool/websites:/app/data
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1
